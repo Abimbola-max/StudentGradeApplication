@@ -11,6 +11,9 @@ public class StudentGradeApplication {
     static double[] totalScores;
     static double overallHighest;
     static double overallLowest;
+    static int[] hardestSubject;
+    static int[] easiestSubject;
+    static double[] averageSubjectScore = new double[numberOfSubjects];
 
     public static void main(String[] args) {
         dataAndTableFunction();
@@ -42,6 +45,7 @@ public class StudentGradeApplication {
 
 
                 for (int count = 0; count < numberOfStudents; count++) {
+                    System.out.println("Enter details for student " + (count + 1));
 
                     for (int counter = 0; counter < numberOfSubjects; counter++) {
                         System.out.print("Enter score for subject " + (counter + 1) + ": ");
@@ -115,7 +119,7 @@ public class StudentGradeApplication {
 
         System.out.println("\nSUBJECT SUMMARY");
 
-        for (int subjectIndex = 0; subjectIndex < studentSubjects[numberOfStudents].length; subjectIndex++) {
+        for (int subjectIndex = 0; subjectIndex < numberOfSubjects; subjectIndex++) {
             System.out.println("\nSubject " + (subjectIndex + 1) + ":");
 
             double totalScore = 0;
@@ -126,7 +130,7 @@ public class StudentGradeApplication {
             double highestStudentScore = Double.MIN_VALUE;
             int lowestScoringStudent = 0;
             double lowestStudentScore = Double.MAX_VALUE;
-            for (int studentIndex = 0; studentIndex < studentSubjects[subjectIndex].length; studentIndex++) {
+            for (int studentIndex = 0; studentIndex < numberOfStudents; studentIndex++) {
                 double subjectScore = studentSubjects[studentIndex][subjectIndex];
                 totalScore += subjectScore;
 
@@ -148,6 +152,7 @@ public class StudentGradeApplication {
             }
 
             double averageScore = totalScore / studentSubjects.length;
+            averageSubjectScore[subjectIndex] = averageScore;
 
             System.out.println("Highest scoring student is student " + (highestScoringStudent + 1) + " scoring " + highestStudentScore);
             System.out.println("Lowest scoring student is student " + (lowestScoringStudent + 1) + " scoring " + lowestStudentScore);
@@ -155,13 +160,10 @@ public class StudentGradeApplication {
             System.out.println("Average score is " + averageScore);
             System.out.println("Number of passes: " + numberOfPasses);
             System.out.println("Number of fails: " + numberOfFails);
-            //System.out.println("The hardest subject is: " + "with "+ numberOfFails);
-            //System.out.println("The easiest subject is: " + "with "+ numberOfPasses);
-            //System.out.println("The overall highest score is scored by " + nameOfStudents + "scoring " + score);
-            //System.out.println("The overall lowest score is scored by " + nameOfStudents + "scoring " + score);
-
 
         }
+        System.out.println("The overall highest score is scored by " + nameOfStudents[highestScoreStudentIndex] + " scoring " + highestScore);
+        System.out.println("The overall lowest score is scored by " + nameOfStudents[lowestScoreStudentIndex] + " scoring " + lowestScore);
     }
 
 
@@ -205,8 +207,4 @@ public class StudentGradeApplication {
         System.out.println("\nClass total score is: " + classTotalScore);
         System.out.println("\nClass Average score is: " + classAverageScore);
     }
-
-
-
-
 }
