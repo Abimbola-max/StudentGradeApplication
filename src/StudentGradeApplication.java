@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -45,9 +46,10 @@ public class StudentGradeApplication {
 
 
                 for (int count = 0; count < numberOfStudents; count++) {
-                    System.out.println("Enter details for student " + (count + 1));
-
+                    System.out.print("Enter the name of student " + (count + 1) + ": ");
+                    nameOfStudents[count] = input.next();
                     for (int counter = 0; counter < numberOfSubjects; counter++) {
+                        System.out.println("Enter the scores for " + nameOfStudents[count] + " below");
                         System.out.print("Enter score for subject " + (counter + 1) + ": ");
                         scores[count][counter] = input.nextDouble();
                         System.out.println("Saving >>>>>>>>>>>>>>>>>>>>>>");
@@ -84,13 +86,12 @@ public class StudentGradeApplication {
                 for (int count = 0; count < numberOfSubjects; count++) {
                     System.out.print("Sub" + (count + 1) + "\t");
                 }
-                System.out.println("TOTAL\tAVE\tPOS");
+                System.out.println("TOTAL\tAVE\t    POS");
                 System.out.println("=========================================================================");
 
 
                 for (int dataCount = 0; dataCount < numberOfStudents; dataCount++) {
-                    System.out.printf("%-15s%d\t", "Student ", dataCount + 1);
-
+                    System.out.printf("%-10s\t", nameOfStudents[dataCount]);
 
                     for (int subScoreCount = 0; subScoreCount < numberOfSubjects; subScoreCount++) {
                         System.out.printf("%.2f\t", scores[dataCount][subScoreCount]);
@@ -152,7 +153,6 @@ public class StudentGradeApplication {
             }
 
             double averageScore = totalScore / studentSubjects.length;
-            averageSubjectScore[subjectIndex] = averageScore;
 
             System.out.println("Highest scoring student is student " + (highestScoringStudent + 1) + " scoring " + highestStudentScore);
             System.out.println("Lowest scoring student is student " + (lowestScoringStudent + 1) + " scoring " + lowestStudentScore);
@@ -162,8 +162,6 @@ public class StudentGradeApplication {
             System.out.println("Number of fails: " + numberOfFails);
 
         }
-        System.out.println("The overall highest score is scored by " + nameOfStudents[highestScoreStudentIndex] + " scoring " + highestScore);
-        System.out.println("The overall lowest score is scored by " + nameOfStudents[lowestScoreStudentIndex] + " scoring " + lowestScore);
     }
 
 
